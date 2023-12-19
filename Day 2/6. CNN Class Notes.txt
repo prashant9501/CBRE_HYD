@@ -1,0 +1,78 @@
+CNN Layer
+
+2D or 3D i/p image >> CNN-layer1 (Conv+Pool layer) >> CNN-layer2 >>Flatten()>> FC Layers1 >> FC Layers1 >>o/p layer
+
+What is the purpose of Conv. layer:>> Conv. layer "extracts the features from the raw image".
+how?? >> by appyling "apropirate filters"
+
+Filters >> 2D or 3D matrices shapes (3,3), (5,5) or (3,3,3) (5,5,3), (7,7,3), (11,11,3)   ....
+
+Convolution is the process of "applying" the filter onto the images
+
+
+
+[images are 2D signals)::high-freq regions in the image >> edges
+low-freq regions in the image >> background
+
+you can desgin a frequency-domain filter (high-pass filter) >> o/p edge info >> o
+spatial image >> 2D FFT >>> o/p is the freq info contained in the image 
+
+filters >> spatial-domain 
+
+
+i/p there 2 types of operations >> point-processing vs neighhood processing
+Convolution >> neighhood processing
+neighhood processing >> histogram-equalisation, CLAHE, denoising, deblurring, edge-enhncement, edge-detection
+
+---------------------
+
+image*filter ==> Feature-map
+[28,28,1] * (3,3) >> [26,26]
+
+[28,28] * 32 filters of [3,3] >> [26,26,32]
+[28,28] * 64 filters of [5,5] >> [24,24,64]
+
+calculation/formula for dimensions of the o/p FM: [(W+2P-F)/S + 1, (H+2P-F)/S + 1]
+F = FILTER SIZE
+P=0, if padding='valid'
+P>0, if padding='same'  >>> the Conv. layer back calulates the value of P, such that the size of the FM == Image
+basically: [(W+2P-F)/S + 1] = W, and solve for P
+
+
+S=1
+  
+[(28+0-3)/1 + 1, (28+0-3)/S + 1] >> SHAPE OF THE FM [26,26]
+dEPTH OF THE FM == NO. OF FILTERS
+
+=========================
+
+IMAGE >> CONV-LAYER (gives me many FM) >> pooling-layers (concentrate the FMs) >> Feature Selection
+
+Pooling-layers >> "pool"-out the most important/informative pixels/info
+pool_size = (2,2)
+
+[26,26,32] >> inoput to the pooling layer
+o/p of the pooling lAYER >> [13,13,32]
+========================================
+
+2D or 3D i/p image >>  [Conv x k >> Pooling] x m >>  GlobalAveragePooling or Flatten()>> FC Layers x n >> o/p layer
+
+k = m = n = 1
+
+
+============
+
+Model Optimization  >> Regulaization >> Dropout Layer, BatchNorm Layer 
+Model CrossValidation >> KFold on DL model
+Model Tuning using GridSearchCV
+
+
+
+
+
+10C8 * 0.6^8 * 0.4^2
+
+
+
+
+
