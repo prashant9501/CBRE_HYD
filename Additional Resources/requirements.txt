@@ -1,0 +1,10 @@
+tensorflow
+pandas
+scikit-learn
+scipy
+nltk
+spacy
+ipykernel
+jupyter
+gensim
+textblob
